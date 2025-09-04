@@ -29,8 +29,10 @@
     <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
+    <!-- navbar and heading section 
+      -->
     <header>
-      <div class="navbar bg-base-100 shadow-sm">
+      <div class="navbar  bg-base-100 shadow-sm ">
         <div class="navbar-start">
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -69,7 +71,7 @@
             <span class="font-bangla text-lg font-semibold">জানালা</span>
           </a>
         </div>
-        <div class="navbar-end hidden lg:flex">
+        <div class="navbar-end hidden  lg:flex ">
           <ul class="menu menu-horizontal px-1 space-x-4">
             <li>
               <a href="" class="btn btn-outline btn-primary"
@@ -91,9 +93,11 @@
       </div>
     </header>
     <section
-      class="flex justify-between items-center py-5 w-11/12 mx-auto gap-10">
+      class="flex flex-col-reverse md:flex md:flex-row   justify-between items-center py-5 w-11/12 mx-auto gap-10">
       <div class="content flex-1">
-        <h2 class="text-4xl font-bold mb-8"><span class="text-blue-500">English</span> is Easy!!</h2>
+        <h2 class="text-4xl font-bold mb-8">
+          <span class="text-blue-500">English</span> is Easy!!
+        </h2>
         <p class="font-bangla">
           আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
           আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে
@@ -103,11 +107,34 @@
           <input type="email" class="input" placeholder="Enter Your Name" />
           <input type="password" class="input" placeholder="Password" />
         </fieldset>
-        <button class="btn hover:bg-blue-950 text-[#E0E7FF] bg-[#422AD5] mt-4">Get Started</button>
+        <button class="btn hover:bg-blue-950 text-[#E0E7FF] bg-[#422AD5] mt-4">
+          Get Started
+        </button>
       </div>
       <div class="image flex-1">
         <img src="./assets/hero-student.png" alt="" />
       </div>
     </section>
+
+    <section class="text-center items-center space-y-10">
+      <h1 class="font-bold text-4xl">
+        <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+      </h1>
+      <div id="level-container" class="space-x-2 space-y-2 flex flex-wrap justify-center items-center">
+        
+      </div>
+      
+      <!-- <div class="bg-[#f8f8f8] rounded-3xl p-16">
+        <p class="font-normal text-sm text-[#79716b] font-bangla mt-16">আপনি এখনো কোন Lesson Select করেন </p>
+        <h2 class="text-3xl font-medium text-[#292524] font-bangla mb-16">একটি Lesson Select করুন।</h2>
+      </div> -->
+     
+    </section>
+
+    <section id="word-container" class="bg-[#f8f8f8] rounded-3xl p-10 w-11/12 mx-auto my-10 grid grid-cols-3 gap-5">
+     
+    </section>
+
+    <script src="./script/index.js"></script>
   </body>
 </html>
