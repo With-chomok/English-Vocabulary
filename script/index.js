@@ -1,3 +1,27 @@
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
+const createElement = (arr) => {
+  const htmlEle = arr.map((el) => `<span class= "btn">${el}</span>`);
+  return htmlEle.join(" ");
+}
+
+
+const manageLoading = (status) => {
+  if (status == true){
+    document.getElementById("spinner").classList.remove("hidden")
+    document.getElementById("word-container").classList.add("hidden")
+  }else{
+    document.getElementById("word-container").classList.remove("hidden")
+    document.getElementById("spinner").classList.add("hidden")
+  }
+
+}
+
+
 const loadLessons = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all")
     .then((res) => res.json())
@@ -11,6 +35,7 @@ const removeActive = () => {
 }
 
 const loadLevelWord = (id) => {
+  manageLoading(true)
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -22,24 +47,7 @@ const loadLevelWord = (id) => {
     });
 };
 
-// {
-//   "status": true,
-//   "message": "successfully fetched a word details",
-//   "data": {
-//     "word": "Brisk",
-//     "meaning": "চটপটে / দ্রুত",
-//     "pronunciation": "ব্রিস্ক",
-//     "level": 3,
-//     "sentence": "He took a brisk walk in the morning.",
-//     "points": 3,
-//     "partsOfSpeech": "adjective",
-//     "synonyms": [
-//       "quick",
-//       "energetic"
-//     ],
-//     "id": 27
-//   }
-// }
+
 const loadWordDetail = async(id) => {
   const url = `https://openapi.programming-hero.com/api/word/${id}`;
 
@@ -80,9 +88,7 @@ detailsBox.innerHTML = `
       </div>
       <div class="">
         <h2 class="font-bold">Synonym</h2>
-        <span class="btn"> clas1</span>
-        <span class="btn"> clas1</span>
-        <span class="btn"> clas1</span>
+        <div class = "">${createElement(word.synonyms)}</div>
       </div>
 
 `;
@@ -105,7 +111,8 @@ const displayLevelWord = (words) => {
       </div>
     
     `;
-    return
+    manageLoading(false)
+    return  
   }
   words.forEach((word) => {
     const card = document.createElement("div");
@@ -122,13 +129,13 @@ const displayLevelWord = (words) => {
     }</div>
         <div class="flex justify-between  items-center ">
           <button onclick="loadWordDetail(${word.id})" class="btn bg-[#1a91ff1a]  hover:bg-primary  hover:text-white"><i class="fa-solid fa-circle-info"></i></button>
-          <button class="btn bg-[#1a91ff1a] hover:bg-primary hover:text-white" ><i class="fa-solid fa-volume-high"></i></button>
+          <button onclick = "pronounceWord('${word.word}')" class="btn bg-[#1a91ff1a] hover:bg-primary hover:text-white" ><i class="fa-solid fa-volume-high"></i></button>
         </div>
       </div>
     `;
     wordContainer.append(card);
   });
-
+manageLoading(false);
 };
 const displayLesson = (lessons) => {
   const levelContainer = document.getElementById("level-container");
@@ -146,5 +153,10 @@ const displayLesson = (lessons) => {
     levelContainer.append(btnDiv);
   });
 };
+
+
+
+// work no  - 1
+
 loadLessons();
     // my_modal_5.showModal()
